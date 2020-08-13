@@ -1,1 +1,70 @@
-<p>registro works!</p>
+<div class="card mx-auto">
+    <div class="card-body">
+        <form [formGroup]="forma" (ngSubmit)="registrar()">
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label>Nombre</label>
+                <input type="text" class="form-control" formControlName="nombre" [class.is-invalid]="esValido('nombre')">
+                <div class="invalid-feedback">
+                  Ingrese su nombre
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Apellidos</label>
+                <input type="text" class="form-control" formControlName="apellido" [class.is-invalid]="esValido('apellido')">
+                <div class="invalid-feedback">
+                  Ingrese sus apellidos
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-md-3 mb-3">
+                <label>DNI</label>
+                <input type="text" class="form-control" formControlName="dni" [class.is-invalid]="esValido('dni')">
+                <div class="invalid-feedback">
+                  Ingrese su DNI
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label>Celular</label>
+                <input type="text" class="form-control" formControlName="celular">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label>Dirección</label>
+                <input type="text" class="form-control" formControlName="direccion">
+              </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label>Correo</label>
+                    <input type="text" class="form-control" formControlName="correo">
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label>Contraseña</label>
+                  <input type="password" class="form-control" formControlName="contrasenia" [class.is-invalid]="esValido('contrasenia')">
+                  <div class="invalid-feedback">
+                    Ingrese una contraseña
+                  </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                  <label>Confirmar contraseña</label>
+                  <input type="password" class="form-control" formControlName="contrasenia2" [class.is-invalid]="esValido('contrasenia2')">
+                  <div class="invalid-feedback">
+                    Confirme la contraseña
+                  </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" type="submit">Registrarme</button>
+
+            <ul *ngIf="errors" class="mt-3 text-danger">
+                <li *ngFor="let error of errors">
+                    {{ error[0] }}
+                    <ul>
+                        <li *ngFor="let msg of error[1]">{{ msg }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>

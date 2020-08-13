@@ -1,11 +1,23 @@
+<main>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" routerLink="/">Créditos Financieros</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<ul>
-  <li>
-    <button routerLink="/creditos">Créditos</button>
-  </li>
-  <li>
-    <button routerLink="/credito">Crédito</button>
-  </li>
-</ul>
-
-<router-outlet></router-outlet>
+  <section class="m-3">
+    <router-outlet></router-outlet>
+  </section>
+</main>

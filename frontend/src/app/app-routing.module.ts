@@ -2,11 +2,15 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreditosComponent } from './pages/creditos/creditos.component';
 import { CreditoComponent } from './pages/credito/credito.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegistroComponent } from './pages/registro/registro.component';
 
 
 const routes: Routes = [
   {path: 'creditos', component: CreditosComponent},
   {path: 'credito', component: CreditoComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'registro', component: RegistroComponent},
 ];
 
 @NgModule({
