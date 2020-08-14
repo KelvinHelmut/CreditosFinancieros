@@ -18,6 +18,10 @@ export class UsersService {
     this.userObservable = this.userSubject.asObservable();
   }
 
+  get user(): User {
+    return this.userSubject.value;
+  }
+
   login(user: User): Observable<any> {
     return this.http.post('users/login', user).pipe(
       map((res: any) => {

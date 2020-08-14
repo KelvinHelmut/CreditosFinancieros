@@ -12,6 +12,9 @@ import { CreditoComponent } from './pages/credito/credito.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
 import { SolicitudComponent } from './pages/solicitud/solicitud.component';
+import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
+import { CestadoPipe } from './pipes/cestado.pipe';
+import { CsentinelPipe } from './pipes/csentinel.pipe';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { SolicitudComponent } from './pages/solicitud/solicitud.component';
     CreditoComponent,
     LoginComponent,
     RegistroComponent,
-    SolicitudComponent
+    SolicitudComponent,
+    ConfirmacionComponent,
+    CestadoPipe,
+    CsentinelPipe
   ],
   imports: [
     BrowserModule,

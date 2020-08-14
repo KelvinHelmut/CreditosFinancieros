@@ -40,6 +40,7 @@ export class RegistroComponent implements OnInit {
     }
 
     let cliente: Cliente = Object.assign({}, this.forma.value);
+    cliente.password = this.forma.get('contrasenia').value;
     this.clientesService.crear(cliente).subscribe(
       data => {
         console.log(data)

@@ -1,1 +1,43 @@
-<p>solicitud works!</p>
+<div class="mx-auto text-center">
+    <h1>Bienvenido</h1>
+    <h2 *ngIf="user.id">{{ user.username }}</h2>
+</div>
+<div class="card mt-5 w-75 mx-auto text-center">
+    <div class="card-body">
+        <div class="mb-3">
+            <h3>Solicita tu crédito</h3>
+        </div>
+        <form [formGroup]="forma" (ngSubmit)="solicitar()">
+            <div class="form-row">
+              <div class="col-md-12 mb-3">
+                <input type="text" class="form-control form-control-lg" placeholder="Monto $" formControlName="monto" [class.is-invalid]="esValido('monto')">
+                <div class="invalid-feedback">
+                  Ingrese un monto mayor a 0 y menor a 50000
+                </div>
+              </div>
+            </div>
+            <div *ngIf="user.id" class="form-group">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="terminos" formControlName="terminos" [class.is-invalid]="esValido('terminos')">
+                  <label class="form-check-label" for="terminos">
+                    Acepto los términos y condiciones
+                  </label>
+                  <div class="invalid-feedback">
+                    Ud. tiene que estar de acuerdo antes de solicitar el crédito
+                  </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary btn-lg" type="submit">Solicitar</button>
+
+            <ul *ngIf="errors" class="mt-3 text-danger">
+                <li *ngFor="let error of errors">
+                    {{ error[0] }}
+                    <ul>
+                        <li *ngFor="let msg of error[1]">{{ msg }}</li>
+                    </ul>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>

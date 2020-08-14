@@ -4,9 +4,13 @@ import { CreditosComponent } from './pages/creditos/creditos.component';
 import { CreditoComponent } from './pages/credito/credito.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
+import { SolicitudComponent } from './pages/solicitud/solicitud.component';
+import { ConfirmacionComponent } from './pages/confirmacion/confirmacion.component';
 
 
 const routes: Routes = [
+  {path: '', component: SolicitudComponent},
+  {path: 'confirmacion', component: ConfirmacionComponent},
   {path: 'creditos', component: CreditosComponent},
   {path: 'credito', component: CreditoComponent},
   {path: 'login', component: LoginComponent},
