@@ -10,4 +10,5 @@ export class Credito {
     prediccion_ia?: number;
     creado?: string;
     actualizado?: string;
+    cliente_txt?: string;
 }

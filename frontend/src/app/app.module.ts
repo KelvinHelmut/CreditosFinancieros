@@ -36,7 +36,7 @@ import { CsentinelPipe } from './pipes/csentinel.pipe';
     ReactiveFormsModule,
     AgGridModule.withComponents([])
   ],
-  providers: [],
+  providers: [CestadoPipe, CsentinelPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

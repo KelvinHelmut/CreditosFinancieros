@@ -22,4 +22,12 @@ export class CreditosService {
       })
     );
   }
+
+  actualizar(credito: Credito) {
+    return this.http.put(`creditos/${credito.id}`, credito);
+  }
+
+  lista() {
+    return this.http.get('creditos');
+  }
 }
