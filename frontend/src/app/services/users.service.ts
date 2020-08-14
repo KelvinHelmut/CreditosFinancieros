@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpApiService } from './http-api.service';
 import { User } from '../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, concatMap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -23,22 +23,15 @@ export class UsersService {
   }
 
   login(user: User): Observable<any> {
-    return this.http.post('users/login', user).pipe(
-      map((res: any) => {
-        let user = Object.assign({}, res.user);
-        this.userSubject.next(user);
-        return res;
-      })
+    return this.http.post('token', user).pipe(
+      map((res: any) => this.http.setToken(res.access)),
+      concatMap(res => this.getSession())
     );
   }
 
   logout() {
-    return this.http.post('users/logout', null).pipe(
-      map((res: any) => {
-        this.userSubject.next(new User());
-        return res;
-      })
-    );
+    this.userSubject.next(new User());
+    this.http.setToken(null);
   }
 
   getSession() {

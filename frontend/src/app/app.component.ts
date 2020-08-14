@@ -20,9 +20,8 @@ export class AppComponent {
   }
 
   logout(ev) {
-    ev.preventDefault();
-    this.usersService.logout().subscribe(data => {
-      this.router.navigate(['/']);
-    })
+    // ev.preventDefault();
+    this.usersService.logout();
+    // this.router.navigate(['/']);
   }
 }

@@ -1,6 +1,7 @@
 from django.urls import path, include
 
 from rest_framework import routers
+from rest_framework_simplejwt import views as jwt_views
 
 from apps.users.viewsets import *
 from apps.clientes.viewsets import *
@@ -19,4 +20,8 @@ router.register('users/password', UserChangePasswordViewSet, basename='password'
 router.register('users/session', SessionViewSet, basename='session')
 router.register('users', UserViewSet)
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+    path('token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+]

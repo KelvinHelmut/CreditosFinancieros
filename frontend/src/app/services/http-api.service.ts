@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -7,24 +7,41 @@ import { HttpClient } from "@angular/common/http";
 export class HttpApiService {
 
   URL_API: string = 'http://localhost:8000/api';
+  httpOptions: any;
 
   constructor(private http: HttpClient) {
+    let token = localStorage.getItem('access_token');
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }),
+    }
+  }
 
+  setToken(token) {
+    localStorage.setItem('access_token', token);
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }),
+    }
   }
 
   get(uri) {
-    return this.http.get(`${this.URL_API}/${uri}/`);
+    return this.http.get(`${this.URL_API}/${uri}/`, this.httpOptions);
   }
 
   post(uri, data) {
-    return this.http.post(`${this.URL_API}/${uri}/`, data);
+    return this.http.post(`${this.URL_API}/${uri}/`, data, this.httpOptions);
   }
 
   put(uri, data) {
-    return this.http.put(`${this.URL_API}/${uri}/`, data);
+    return this.http.put(`${this.URL_API}/${uri}/`, data, this.httpOptions);
   }
 
   delete(uri) {
-    return this.http.delete(`${this.URL_API}/${uri}/`);
+    return this.http.delete(`${this.URL_API}/${uri}/`, this.httpOptions);
   }
 }
