@@ -11,7 +11,7 @@ class CreditoSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'cliente', 'estado', 'monto', 'deuda_sbs',
             'calificacion_sentinel', 'prediccion_ia',
-            'creado', 'actualizado', 'cliente_txt',
+            'creado', 'actualizado', 'responsable', 'cliente_txt',
         )
         read_only_fields = (
             'creado', 'actualizado', 'deuda_sbs',

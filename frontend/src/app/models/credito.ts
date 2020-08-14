@@ -11,4 +11,5 @@ export class Credito {
     creado?: string;
     actualizado?: string;
     cliente_txt?: string;
+    responsable?: number;
 }

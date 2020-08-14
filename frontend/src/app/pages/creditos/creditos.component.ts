@@ -3,6 +3,8 @@ import { CreditosService } from 'src/app/services/creditos.service';
 import { CestadoPipe } from 'src/app/pipes/cestado.pipe';
 import { CsentinelPipe } from 'src/app/pipes/csentinel.pipe';
 import { Credito } from 'src/app/models/credito';
+import { UsersService } from 'src/app/services/users.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-creditos',
@@ -12,6 +14,7 @@ import { Credito } from 'src/app/models/credito';
 export class CreditosComponent implements OnInit {
 
   ESTADOS = ['RECHAZADO', 'SOLICITADO', 'APROBADO'];
+  user: User;
 
   columnDefs = [
     {headerName: 'ID', field: 'id', hide: true},
@@ -31,6 +34,7 @@ export class CreditosComponent implements OnInit {
       onCellValueChanged: params => {
         let credito: Credito = Object.assign({}, params.data);
         credito.estado = params.newValue;
+        credito.responsable = this.user.id;
         this.creditosService.actualizar(credito).subscribe(data => {
           console.log(data)
         })
@@ -65,10 +69,11 @@ export class CreditosComponent implements OnInit {
 
   rowData: any;
   
-  constructor(private creditosService: CreditosService, private estadoPipe: CestadoPipe, private sentinelPipe: CsentinelPipe) { }
+  constructor(private creditosService: CreditosService, private usersService: UsersService, private estadoPipe: CestadoPipe, private sentinelPipe: CsentinelPipe) { }
 
   ngOnInit(): void {
-    this.rowData = this.creditosService.lista();
+    this.usersService.userObservable.subscribe(user => this.user = user);
+    this.rowData = this.creditosService.listaSolicitados();
   }
 
 }

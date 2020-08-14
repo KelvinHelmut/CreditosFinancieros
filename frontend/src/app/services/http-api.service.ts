@@ -29,8 +29,10 @@ export class HttpApiService {
     }
   }
 
-  get(uri) {
-    return this.http.get(`${this.URL_API}/${uri}/`, this.httpOptions);
+  get(uri, params={}) {
+    params = Object.entries(params).map(e => `${e[0]}=${e[1]}`).join('&')
+    if (params) params = '?' + params;
+    return this.http.get(`${this.URL_API}/${uri}/${params}`, this.httpOptions);
   }
 
   post(uri, data) {

@@ -1,6 +1,7 @@
 from django.db import models
 
 from apps.clientes.models import Cliente
+from apps.trabajadores.models import Trabajador
 from .functions import get_deuda_sbs, get_calificacion_sentinel, get_prediccion_ia
 
 class Credito(models.Model):
@@ -32,12 +33,14 @@ class Credito(models.Model):
     prediccion_ia = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     creado = models.DateTimeField(auto_now_add=True)
     actualizado = models.DateTimeField(auto_now=True)
+    responsable = models.ForeignKey(Trabajador, on_delete=models.DO_NOTHING, null=True, blank=True)
 
     class Meta:
         """Meta definition for Credito."""
 
         verbose_name = 'Credito'
         verbose_name_plural = 'Creditos'
+        ordering = ('-id',)
 
     def __str__(self):
         """Unicode representation of Credito."""

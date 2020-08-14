@@ -30,4 +30,8 @@ export class CreditosService {
   lista() {
     return this.http.get('creditos');
   }
+
+  listaSolicitados() {
+    return this.http.get('creditos', {'estado': 0});
+  }
 }

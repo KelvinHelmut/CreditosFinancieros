@@ -7,3 +7,4 @@ from .models import Credito
 class CreditoViewSet(viewsets.ModelViewSet):
     queryset = Credito.objects.all()
     serializer_class = CreditoSerializer
+    filter_fields = ('estado',)
