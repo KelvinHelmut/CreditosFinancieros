@@ -27,7 +27,7 @@ export class SolicitudComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.usersService.user;
+    this.usersService.userObservable.subscribe(user => this.user = user);
   }
 
   solicitar() {

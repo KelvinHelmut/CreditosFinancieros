@@ -1,19 +1,21 @@
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import Group
 
 from rest_framework import views
 from rest_framework import viewsets
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework import authentication
+from rest_framework.authentication import BaseAuthentication
 
+from apps.trabajadores.models import Trabajador
+from apps.clientes.models import Cliente
 from .serializers import UserSerializer, UserLoginSerializer, UserChangePasswordSerializer
 from .models import User
 
-class NoAuthentication(authentication.BaseAuthentication):
+class NoAuthentication(BaseAuthentication):
     def authenticate(self, request):
         user = User()
         return (user, None)
+
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -80,10 +82,22 @@ class UserLogoutViewset(viewsets.ViewSet):
 class SessionViewSet(viewsets.ViewSet):
     def list(self, request):
         user = request.user
+        name = ''
+
+        if user.is_staff:
+            trabajador = Trabajador.objects.filter(pk=user.pk).first()
+            if trabajador:
+                name = str(trabajador)
+        else:
+            cliente = Cliente.objects.filter(pk=user.pk).first()
+            if cliente:
+                name = str(cliente)
 
         return Response({
             "user": {
                 "id": user.id,
                 "username": user.username,
+                "is_staff": user.is_staff,
+                "name": name,
             },
         })

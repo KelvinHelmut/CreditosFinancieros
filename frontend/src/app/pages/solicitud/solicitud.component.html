@@ -1,6 +1,6 @@
 <div class="mx-auto text-center">
     <h1>Bienvenido</h1>
-    <h2 *ngIf="user.id">{{ user.username }}</h2>
+    <h2 *ngIf="user.id">{{ user.name }}</h2>
 </div>
 <div class="card mt-5 w-75 mx-auto text-center">
     <div class="card-body">
@@ -8,7 +8,7 @@
             <h3>Solicita tu crédito</h3>
         </div>
         <form [formGroup]="forma" (ngSubmit)="solicitar()">
-            <div class="form-row">
+            <div *ngIf="user.id" class="form-row">
               <div class="col-md-12 mb-3">
                 <input type="text" class="form-control form-control-lg" placeholder="Monto $" formControlName="monto" [class.is-invalid]="esValido('monto')">
                 <div class="invalid-feedback">

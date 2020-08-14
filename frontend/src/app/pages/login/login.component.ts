@@ -33,7 +33,12 @@ export class LoginComponent implements OnInit {
     let user: User = Object.assign({}, this.forma.value);
     this.usersService.login(user).subscribe(
       data => {
-        this.router.navigate(['/']);
+        user = Object.assign({}, data.user);
+        if (user.is_staff) {
+          this.router.navigate(['/creditos']);
+        } else {
+          this.router.navigate(['/']);
+        }
       },
       res => {
         console.warn(res.error)

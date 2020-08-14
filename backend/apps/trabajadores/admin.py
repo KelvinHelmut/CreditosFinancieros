@@ -16,4 +16,5 @@ class TrabajadorAdmin(admin.ModelAdmin):
                 obj.set_password(obj.password)
         else:
             obj.set_password(obj.password)
+        obj.is_staff = True
         super().save_model(request, obj, form, change)
