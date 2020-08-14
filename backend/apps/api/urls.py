@@ -5,10 +5,12 @@ from rest_framework import routers
 from apps.users.viewsets import *
 from apps.clientes.viewsets import *
 from apps.trabajadores.viewsets import *
+from apps.creditos.viewsets import *
 
 app_name = 'api'
 
 router = routers.DefaultRouter()
+router.register('creditos', CreditoViewSet)
 router.register('clientes', ClienteViewSet)
 router.register('trabajadores', TrabajadorViewSet)
 router.register('users/login', UserLoginViewset, basename='login')
