@@ -32,27 +32,45 @@ DATABASES = {
 $ createdb -U postgres creditos_financieros
 ```
 
-- Instalar dependencias
+- Abrir un terminal en la carpeta del proyecto y ejecutar los siguientes comandos
 
 ```bash
-$ pip install -r requirements.txt
-```
+# Solo ejecutar solo uno(el de su preferencia)
 
-- Entrar a la carpeta 'backend' e iniciar servidor web
+# Preparar entorno con virtualenv
+$ virtualenv .env
+$ source .env/bin/activate
+
+# Preparar entorno con pipenv
+$ pipenv shell
+```
 
 ```bash
 $ cd backend
+$ pip install -r requirements.txt
 $ python manage.py migrate
 $ python manage.py createsuperuser 
-$ python manage.py runserver
+$ python manage.py runserver 0.0.0.0:8000
 ```
+
+- Una vez configurado, inicie el servidor backend
+
+```bash
+$ python manage.py runserver 0.0.0.0:8000
+```
+
+- Ingresar a http://localhost:8000/admin iniciar sesión con el usuario creado en la terminal y podrá crear trabajadores, estos son los que serán encargados de aprobar o rechazar los créditos
 
 ## Front-end
 
-Ingresar a la carpeta 'frontend', instalar dependencias e iniciar aplicativo web
+- Abrir un terminal en la carpeta del proyecto y ejecutar los siguientes comandos
 
 ```bash
 $ cd frontend
 $ npm install
 $ ng serve --open
 ```
+
+- Se abrirá un página web en http://localhost:4200
+- Desde esta página podrá registrarse como cliente y solicitar créditos
+- Si ingresa con un usuario de trabajador podrá aprobar y rechazar créditos
