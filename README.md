@@ -70,6 +70,6 @@ npm install
 ng serve --open
 ```
 
-- Se abrirá un página web en http://localhost:4200
+- Se abrirá una página web en http://localhost:4200
 - Desde esta página podrá registrarse como cliente y solicitar créditos
-- Si ingresa con un usuario de trabajador podrá aprobar y rechazar créditos
+- Si ingresa con un usuario de trabajador podrá aprobar y rechazar créditos (los usuarios de trabajador son creados en http://localhost:8000/admin)
