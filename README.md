@@ -29,7 +29,7 @@ DATABASES = {
 - Crear base de datos 'creditos_financieros' en postgresql
 
 ```bash
-$ createdb -U postgres creditos_financieros
+createdb -U postgres creditos_financieros
 ```
 
 - Abrir un terminal en la carpeta del proyecto y ejecutar los siguientes comandos
@@ -38,25 +38,24 @@ $ createdb -U postgres creditos_financieros
 # Solo ejecutar solo uno(el de su preferencia)
 
 # Preparar entorno con virtualenv
-$ virtualenv .env
-$ source .env/bin/activate
+virtualenv .env
+source .env/bin/activate
 
 # Preparar entorno con pipenv
-$ pipenv shell
+pipenv shell
 ```
 
 ```bash
-$ cd backend
-$ pip install -r requirements.txt
-$ python manage.py migrate
-$ python manage.py createsuperuser 
-$ python manage.py runserver 0.0.0.0:8000
+cd backend
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser 
 ```
 
 - Una vez configurado, inicie el servidor backend
 
 ```bash
-$ python manage.py runserver 0.0.0.0:8000
+python manage.py runserver 0.0.0.0:8000
 ```
 
 - Ingresar a http://localhost:8000/admin iniciar sesión con el usuario creado en la terminal y podrá crear trabajadores, estos son los que serán encargados de aprobar o rechazar los créditos
@@ -66,9 +65,9 @@ $ python manage.py runserver 0.0.0.0:8000
 - Abrir un terminal en la carpeta del proyecto y ejecutar los siguientes comandos
 
 ```bash
-$ cd frontend
-$ npm install
-$ ng serve --open
+cd frontend
+npm install
+ng serve --open
 ```
 
 - Se abrirá un página web en http://localhost:4200
